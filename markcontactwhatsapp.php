@@ -84,19 +84,23 @@ class MarkContactWhatsapp extends Module
         if (Tools::isSubmit('submit'.$this->name)) {
             $Whats_Number= (string)Tools::getValue('Whats_Number');
             $Whats_Message= (string)Tools::getValue('Whats_Message');
-            if ((!$Whats_Number
-               || empty($Whats_Number)
-               || !Validate::isPhoneNumber($Whats_Number)
-            )
-                &&
-                (
-                   !$Whats_Message
-                   || empty($Whats_Message)
-                   || !Validate::isString($Whats_Message)
-               )
-            ) {
-                $output .= $this->displayError($this->l('Invalid Configuration value'));
-            } else {
+            if (!Validate::isPhoneNumber($Whats_Number)) 
+            {
+                $output .= $this->displayError($this->l('Error: : Phone Number field is invalid. Must be a numeric value.'));
+            }
+            elseif (!$Whats_Number || empty($Whats_Number))
+            {
+                 $output .= $this->displayError($this->l('Error: Phone Number field is invalid. Value can\'t be empty.'));
+            }
+            if (!Validate::isMessage($Whats_Message))
+            {
+                $output .= $this->displayError($this->l('Error: Message field is invalid. Must be a alphanumeric value without special characters.'));
+            }
+            elseif (!$Whats_Message || empty($Whats_Message))
+            {
+                $output .= $this->displayError($this->l('Error: Message field is invalid. Value can\'t be empty.'));
+            } else
+            {
                 Configuration::updateValue('Whats_Number', $Whats_Number);
                 Configuration::updateValue('Whats_Message', $Whats_Message);
                 $output .= $this->displayConfirmation($this->l('Settings updated'));
@@ -123,6 +127,7 @@ class MarkContactWhatsapp extends Module
                     'desc' => $this->l('Your phone number'),
                     'name' => 'Whats_Number',
                     'size' => 10,
+                    'maxlength' => 15,
                     'required' => true,
                 ),
                 array(

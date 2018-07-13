@@ -85,18 +85,19 @@ class MarkContactWhatsapp extends Module
             $Whats_Number= (string)Tools::getValue('Whats_Number');
             $Whats_Message= (string)Tools::getValue('Whats_Message');
             if (!Validate::isPhoneNumber($Whats_Number)) {
-                $output .= $this->displayError($this->l('Error: : Phone Number field is invalid. Must be a numeric value.'));
-            }
-            elseif (!$Whats_Number || empty($Whats_Number)) {
-                 $output .= $this->displayError($this->l('Error: Phone Number field is invalid. Value can\'t be empty.'));
+                $output .= $this->displayError($this->l('Error: : Phone Number field is invalid.
+                    Must be a numeric value.'));
+            } elseif (!$Whats_Number || empty($Whats_Number)) {
+                 $output .= $this->displayError($this->l('Error: Phone Number field is invalid.
+                    Value can\'t be empty.'));
             }
             if (!Validate::isMessage($Whats_Message)) {
-                $output .= $this->displayError($this->l('Error: Message field is invalid. Must be a alphanumeric value without special characters.'));
-            }
-            elseif (!$Whats_Message || empty($Whats_Message)) {
-                $output .= $this->displayError($this->l('Error: Message field is invalid. Value can\'t be empty.'));
-            }
-            else {
+                $output .= $this->displayError($this->l('Error: Message field is invalid.
+                    Must be a alphanumeric value without special characters.'));
+            } elseif (!$Whats_Message || empty($Whats_Message)) {
+                $output .= $this->displayError($this->l('Error: Message field is invalid.
+                    Value can\'t be empty.'));
+            } else {
                 Configuration::updateValue('Whats_Number', $Whats_Number);
                 Configuration::updateValue('Whats_Message', $Whats_Message);
                 $output .= $this->displayConfirmation($this->l('Settings updated'));

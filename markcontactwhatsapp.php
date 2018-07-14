@@ -60,7 +60,7 @@ class MarkContactWhatsapp extends Module
         return parent::install()
         && $this->registerHook('displayHeader')
         && $this->registerHook('displayFooterBefore')
-        && Configuration::updateValue('Whats_Number', '4434395115')
+        && Configuration::updateValue('Whats_Number', '524434395115')
         && Configuration::updateValue('Whats_Background', '#20b038')
         && Configuration::updateValue('Whats_Fontcolor', '#ffffff')
         && Configuration::updateValue('Whats_Message', $this->l('I want information'));
@@ -102,7 +102,7 @@ class MarkContactWhatsapp extends Module
                 $output .= $this->displayError($this->l('Error: Background field is invalid. Must be a Hex value.'));
             }
             elseif (!Validate::isColor($Whats_Fontcolor)) {
-                $output .= $this->displayError($this->l('Error: Background field is invalid. Value Hex be empty.'));
+                $output .= $this->displayError($this->l('Error: FontColor field is invalid. Must be a Hex value.'));
             }
             elseif (!$Whats_Background || empty($Whats_Background)) {
                 $output .= $this->displayError($this->l('Error: Background field is invalid. Value can\'t be empty.'));
@@ -139,7 +139,7 @@ class MarkContactWhatsapp extends Module
                     'type' => 'text',
                     'label' => $this->l('Phone Number'),
                     'desc' => $this->l('Your phone number'),
-                    'hint' => $this->l('You phone number without "+" symbol.'),
+                    'hint' => $this->l('Format: country code + Phone Number.'),
                     'name' => 'Whats_Number',
                     'prefix' => '<i class="icon icon-whatsapp"></i>',
                     'size' => 10,

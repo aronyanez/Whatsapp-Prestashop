@@ -39,10 +39,8 @@ class MarkContactWhatsapp extends Module
         $this->version = '1.1.0';
         $this->author = 'Arón Yáñez';
         $this->need_instance = 0;
+        $this->module_key = '36f7c4d71872c26600f166261c81ae48';
 
-        /**
-         * Set $this->bootstrap to true if your module is compliant with bootstrap (PrestaShop 1.6)
-         */
         $this->bootstrap = true;
 
         parent::__construct();

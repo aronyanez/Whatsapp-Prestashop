@@ -55,15 +55,11 @@ class MarkContactWhatsapp extends Module
         $this->ps_versions_compliancy = array('min' => '1.7', 'max' => _PS_VERSION_);
     }
 
-    /**
-     * Don't forget to create update methods if needed:
-     * http://doc.prestashop.com/display/PS16/Enabling+the+Auto-Update
-     */
     public function install()
     {
         return parent::install()
         && $this->registerHook('displayHeader')
-        && $this->registerHook('displayHome')
+        && $this->registerHook('displayFooterBefore')
         && Configuration::updateValue('Whats_Number', '4434395115')
         && Configuration::updateValue('Whats_Message', $this->l('I want information'));
     }
@@ -73,7 +69,7 @@ class MarkContactWhatsapp extends Module
     {
         return parent::uninstall()
         && $this->unregisterHook('displayHeader')
-        && $this->unregisterHook('displayHome')
+        && $this->unregisterHook('displayFooterBefore')
         && Configuration::deleteByName('Whats_Number')
         && Configuration::deleteByName('Whats_Message');
     }
@@ -90,7 +86,7 @@ class MarkContactWhatsapp extends Module
             elseif (!$Whats_Number || empty($Whats_Number)) {
                  $output .= $this->displayError($this->l('Error: Phone Number field is invalid. Value can\'t be empty.'));
             }
-            if (!Validate::isMessage($Whats_Message)) {
+            elseif (!Validate::isMessage($Whats_Message)) {
                 $output .= $this->displayError($this->l('Error: Message field is invalid. Must be a alphanumeric value without special characters.'));
             }
             elseif (!$Whats_Message || empty($Whats_Message)) {
@@ -121,7 +117,9 @@ class MarkContactWhatsapp extends Module
                     'type' => 'text',
                     'label' => $this->l('Phone Number'),
                     'desc' => $this->l('Your phone number'),
+                    'hint' => $this->l('You phone number without "+" symbol.'),
                     'name' => 'Whats_Number',
+                    'prefix' => '<i class="icon icon-whatsapp"></i>',
                     'size' => 10,
                     'maxlength' => 15,
                     'required' => true,
@@ -196,7 +194,7 @@ class MarkContactWhatsapp extends Module
         );
     }
 
-    public function hookDisplayHome()
+    public function hookdisplayFooterBefore()
     {
         /* Place your code here. */
         $this ->context->smarty-> assign(array(

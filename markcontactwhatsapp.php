@@ -87,31 +87,30 @@ class MarkContactWhatsapp extends Module
             $Whats_Background= (string)Tools::getValue('Whats_Background');
             $Whats_Fontcolor= (string)Tools::getValue('Whats_Fontcolor');
             if (!Validate::isPhoneNumber($Whats_Number)) {
-                $output .= $this->displayError($this->l('Error: : Phone Number field is invalid. Must be a numeric value.'));
-            }
-            elseif (!$Whats_Number || empty($Whats_Number)) {
-                 $output .= $this->displayError($this->l('Error: Phone Number field is invalid. Value can\'t be empty.'));
-            }
-            elseif (!Validate::isMessage($Whats_Message)) {
-                $output .= $this->displayError($this->l('Error: Message field is invalid. Must be a alphanumeric value without special characters.'));
-            }
-            elseif (!$Whats_Message || empty($Whats_Message)) {
-                $output .= $this->displayError($this->l('Error: Message field is invalid. Value can\'t be empty.'));
-            }
-            elseif (!Validate::isColor($Whats_Background)) {
-                $output .= $this->displayError($this->l('Error: Background field is invalid. Must be a Hex value.'));
-            }
-            elseif (!Validate::isColor($Whats_Fontcolor)) {
-                $output .= $this->displayError($this->l('Error: FontColor field is invalid. Must be a Hex value.'));
-            }
-            elseif (!$Whats_Background || empty($Whats_Background)) {
-                $output .= $this->displayError($this->l('Error: Background field is invalid. Value can\'t be empty.'));
-            }
-            elseif (!$Whats_Fontcolor || empty($Whats_Fontcolor)) {
-                $output .= $this->displayError($this->l('Error: FontColor field is invalid. Value can\'t be empty.'));
-            }
-
-            else {
+                $output .= $this->displayError($this->l('Error: : Phone Number field is invalid.
+                	Must be a numeric value.'));
+            } elseif (!$Whats_Number || empty($Whats_Number)) {
+                 $output .= $this->displayError($this->l('Error: Phone Number field is invalid.
+                 	Value can\'t be empty.'));
+            } elseif (!Validate::isMessage($Whats_Message)) {
+                $output .= $this->displayError($this->l('Error: Message field is invalid.
+                	Must be a alphanumeric value without special characters.'));
+            } elseif (!$Whats_Message || empty($Whats_Message)) {
+                $output .= $this->displayError($this->l('Error: Message field is invalid.
+                	Value can\'t be empty.'));
+            } elseif (!Validate::isColor($Whats_Background)) {
+                $output .= $this->displayError($this->l('Error: Background field is invalid.
+                	Must be a Hex value.'));
+            } elseif (!Validate::isColor($Whats_Fontcolor)) {
+                $output .= $this->displayError($this->l('Error: FontColor field is invalid.
+                	Must be a Hex value.'));
+            } elseif (!$Whats_Background || empty($Whats_Background)) {
+                $output .= $this->displayError($this->l('Error: Background field is invalid.
+                	Value can\'t be empty.'));
+            } elseif (!$Whats_Fontcolor || empty($Whats_Fontcolor)) {
+                $output .= $this->displayError($this->l('Error: FontColor field is invalid.
+                	Value can\'t be empty.'));
+            } else {
                 Configuration::updateValue('Whats_Number', $Whats_Number);
                 Configuration::updateValue('Whats_Message', $Whats_Message);
                 Configuration::updateValue('Whats_Background', $Whats_Background);
@@ -232,10 +231,10 @@ class MarkContactWhatsapp extends Module
 
     public function hookdisplayFooterBefore()
     {
-       return $this->getWhats();
+        return $this->getWhats();
     }
 
-       public function getWhats()
+    public function getWhats()
     {
         /* Place your code here. */
         $this ->context->smarty-> assign(array(
@@ -243,10 +242,7 @@ class MarkContactWhatsapp extends Module
             'Whats_Message' => Configuration::get('Whats_Message'),
             'Whats_Background' => Configuration::get('Whats_Background'),
             'Whats_Fontcolor' => Configuration::get('Whats_Fontcolor')
-
-
         ));
         return $this->display(__FILE__, 'views/templates/hook/Whatsapphook.tpl');
     }
-
 }

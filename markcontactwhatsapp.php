@@ -61,6 +61,7 @@ class MarkContactWhatsapp extends Module
         && Configuration::updateValue('Whats_Number', '524434395115')
         && Configuration::updateValue('Whats_Background', '#20b038')
         && Configuration::updateValue('Whats_Fontcolor', '#ffffff')
+        && Configuration::updateValue('Whats_prefix', '52')
         && Configuration::updateValue('Whats_Message', $this->l('I want information'));
     }
 
@@ -73,6 +74,7 @@ class MarkContactWhatsapp extends Module
         && Configuration::deleteByName('Whats_Number')
         && Configuration::deleteByName('Whats_Background')
         && Configuration::deleteByName('Whats_Fontcolor')
+        && Configuration::deleteByName('Whats_prefix')
         && Configuration::deleteByName('Whats_Message');
     }
 
@@ -80,10 +82,11 @@ class MarkContactWhatsapp extends Module
     {
         $output = null;
         if (Tools::isSubmit('submit'.$this->name)) {
-            $Whats_Number= (string)Tools::getValue('Whats_Number');
-            $Whats_Message= (string)Tools::getValue('Whats_Message');
-            $Whats_Background= (string)Tools::getValue('Whats_Background');
-            $Whats_Fontcolor= (string)Tools::getValue('Whats_Fontcolor');
+            $Whats_Number = (string)Tools::getValue('Whats_Number');
+            $Whats_Message = (string)Tools::getValue('Whats_Message');
+            $Whats_Background = (string)Tools::getValue('Whats_Background');
+            $Whats_Fontcolor = (string)Tools::getValue('Whats_Fontcolor');
+            $Whats_prefix = (string)Tools::getValue('Whats_prefix');
             if (!Validate::isPhoneNumber($Whats_Number)) {
                 $output .= $this->displayError($this->l('Error: : Phone Number field is invalid.
                 	Must be a numeric value.'));
@@ -113,6 +116,7 @@ class MarkContactWhatsapp extends Module
                 Configuration::updateValue('Whats_Message', $Whats_Message);
                 Configuration::updateValue('Whats_Background', $Whats_Background);
                 Configuration::updateValue('Whats_Fontcolor', $Whats_Fontcolor);
+                Configuration::updateValue('Whats_prefix', $Whats_prefix);
 
                 $output .= $this->displayConfirmation($this->l('Settings updated'));
             }
@@ -125,6 +129,15 @@ class MarkContactWhatsapp extends Module
         // Get default language
         $defaultLang = (int)Configuration::get('PS_LANG_DEFAULT');
         $fieldsForm=array();
+        $countries = Country::getCountries($defaultLang,false,false,false);
+        $options = array();
+        foreach ($countries as $id => $country)
+        {
+          $options[] = array(
+            "id" => $id.'-'.$country['call_prefix'],
+            "name" => $country['country'].'>>'.$country['call_prefix']
+          );
+        }
         // Init Fields form array
         $fieldsForm[0]['form'] = array(
             'legend' => array(
@@ -132,6 +145,18 @@ class MarkContactWhatsapp extends Module
                 'icon' => 'icon-cogs',
             ),
             'input' =>  array(
+                array(
+                    'type' => 'select',
+                    'label' => $this->l('Call Prefix:'),
+                    'name' => 'Whats_prefix',
+                    'desc' => $this->l('Select your Call Prefix.'),
+                    'required' => true,
+                    'options' => array(
+                        'query' => $options,
+                        'id' => 'id',     
+                        'name' => 'name',
+                  ),
+                ),
                 array(
                     'type' => 'text',
                     'label' => $this->l('Phone Number'),
@@ -163,6 +188,7 @@ class MarkContactWhatsapp extends Module
                     'name' => 'Whats_Fontcolor',
                     'required' => true,
                 ),
+
             ),
             'submit' => array(
                 'title' => $this->l('Save'),
@@ -199,6 +225,8 @@ class MarkContactWhatsapp extends Module
         $helper->fields_value['Whats_Message'] = Configuration::get('Whats_Message');
         $helper->fields_value['Whats_Background'] = Configuration::get('Whats_Background');
         $helper->fields_value['Whats_Fontcolor'] = Configuration::get('Whats_Fontcolor');
+        $helper->fields_value['Whats_prefix'] = Configuration::get('Whats_prefix');
+
         return $helper->generateForm($fieldsForm);
     }
 
@@ -206,6 +234,7 @@ class MarkContactWhatsapp extends Module
 
     public function hookDisplayHeader()
     {
+
         /* Place your code here. */
         $this->context->controller->registerStylesheet(
             'modules-whatsapp-style',
@@ -239,6 +268,7 @@ class MarkContactWhatsapp extends Module
             'Whats_Number' => Configuration::get('Whats_Number'),
             'Whats_Message' => Configuration::get('Whats_Message'),
             'Whats_Background' => Configuration::get('Whats_Background'),
+            'Whats_prefix' => Configuration::get('Whats_prefix'),
             'Whats_Fontcolor' => Configuration::get('Whats_Fontcolor')
         ));
         return $this->display(__FILE__, 'views/templates/hook/Whatsapphook.tpl');

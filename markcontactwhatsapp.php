@@ -36,7 +36,7 @@ class MarkContactWhatsapp extends Module
     {
         $this->name = 'markcontactwhatsapp';
         $this->tab = 'social_networks';
-        $this->version = '1.1.0';
+        $this->version = '1.2.0';
         $this->author = 'Arón Yáñez';
         $this->need_instance = 0;
         $this->module_key = '36f7c4d71872c26600f166261c81ae48';

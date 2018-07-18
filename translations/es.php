@@ -8,9 +8,14 @@ $_MODULE['<{markcontactwhatsapp}prestashop>markcontactwhatsapp_876f23178c29dc255
 $_MODULE['<{markcontactwhatsapp}prestashop>markcontactwhatsapp_d5d5da0b761e3dabafb2adc9b35e0e95'] = 'Quiero información';
 $_MODULE['<{markcontactwhatsapp}prestashop>markcontactwhatsapp_c888438d14855d7d96a2724ee9c306bd'] = 'Ajustes actualizados';
 $_MODULE['<{markcontactwhatsapp}prestashop>markcontactwhatsapp_f4f70727dc34561dfde1a3c529b6205c'] = 'Ajustes';
+$_MODULE['<{markcontactwhatsapp}prestashop>markcontactwhatsapp_28a6ca6958d5c5d9fa03417e08250571'] = 'Prefijo Teléfonico';
+$_MODULE['<{markcontactwhatsapp}prestashop>markcontactwhatsapp_24e830a6dbc1f5fd4780268be3e53789'] = 'Selecciona tu prefijo teléfonico';
 $_MODULE['<{markcontactwhatsapp}prestashop>markcontactwhatsapp_1e4dbc7eaa78468a3bc1448a3d68d906'] = 'Número Teléfonico';
 $_MODULE['<{markcontactwhatsapp}prestashop>markcontactwhatsapp_521daf39e372791baf8221f9ff0727e1'] = 'Tu número teléfonico';
+$_MODULE['<{markcontactwhatsapp}prestashop>markcontactwhatsapp_26dc3462769440d778dcca01d4a2d5d8'] = 'Formato: Numero Teléfonico';
 $_MODULE['<{markcontactwhatsapp}prestashop>markcontactwhatsapp_4c2a8fe7eaf24721cc7a9f0175115bd4'] = 'Mensaje';
 $_MODULE['<{markcontactwhatsapp}prestashop>markcontactwhatsapp_dc0dd5ec4394a239a1671db90f0c3821'] = 'Tu mensaje inicial';
+$_MODULE['<{markcontactwhatsapp}prestashop>markcontactwhatsapp_a9ded1e5ce5d75814730bb4caaf49419'] = 'Fondo';
+$_MODULE['<{markcontactwhatsapp}prestashop>markcontactwhatsapp_9a910a820e32565245797522be227175'] = 'Color de fuente';
 $_MODULE['<{markcontactwhatsapp}prestashop>markcontactwhatsapp_c9cc8cce247e49bae79f15173ce97354'] = 'Guardar';
 $_MODULE['<{markcontactwhatsapp}prestashop>markcontactwhatsapp_630f6dc397fe74e52d5189e2c80f282b'] = 'Regresar a la lista';

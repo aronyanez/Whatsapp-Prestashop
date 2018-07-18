@@ -61,7 +61,7 @@ class MarkContactWhatsapp extends Module
         && Configuration::updateValue('Whats_Number', '524434395115')
         && Configuration::updateValue('Whats_Background', '#20b038')
         && Configuration::updateValue('Whats_Fontcolor', '#ffffff')
-        && Configuration::updateValue('Whats_prefix', '52')
+        && Configuration::updateValue('Whats_prefix', '145-52')
         && Configuration::updateValue('Whats_Message', $this->l('I want information'));
     }
 
@@ -135,7 +135,7 @@ class MarkContactWhatsapp extends Module
         {
           $options[] = array(
             "id" => $id.'-'.$country['call_prefix'],
-            "name" => $country['country'].'>>'.$country['call_prefix']
+            "name" => $country['country'].' +'.$country['call_prefix']
           );
         }
         // Init Fields form array
@@ -161,7 +161,7 @@ class MarkContactWhatsapp extends Module
                     'type' => 'text',
                     'label' => $this->l('Phone Number'),
                     'desc' => $this->l('Your phone number'),
-                    'hint' => $this->l('Format: country code + Phone Number.'),
+                    'hint' => $this->l('Format: Phone Number.'),
                     'name' => 'Whats_Number',
                     'prefix' => '<i class="icon icon-whatsapp"></i>',
                     'size' => 10,

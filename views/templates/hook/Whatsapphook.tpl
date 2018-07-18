@@ -22,12 +22,11 @@
 *  @license   http://opensource.org/licenses/afl-3.0.php  Academic Free License (AFL 3.0)
 *  International Registered Trademark & Property of PrestaShop SA
 *}
-
-
-<a class="whats whatapp-movil" href="whatsapp://send/?phone={$Whats_prefix}{$Whats_Number}&amp;text={$Whats_Message}" target="_blank" style="background: {$Whats_Background}; color: {$Whats_Fontcolor}">
+{assign var=Whats_prefix value="-"|explode:$Whats_prefix}
+<a class="whats whatapp-movil" href="whatsapp://send/?phone={$Whats_prefix[1]}{$Whats_Number}&amp;text={$Whats_Message}" target="_blank" style="background: {$Whats_Background}; color: {$Whats_Fontcolor}">
 <i class="fab fa-whatsapp"></i>
 Whatsapp</a>
 
-<a class="whats whatsapp-web" href="https://web.whatsapp.com/send?phone=+{$Whats_prefix}{$Whats_Number}&amp;text={$Whats_Message}" target="_blank" style="background: {$Whats_Background}; color: {$Whats_Fontcolor}">
+<a class="whats whatsapp-web" href="https://web.whatsapp.com/send?phone=+{$Whats_prefix[1]}{$Whats_Number}&amp;text={$Whats_Message}" target="_blank" style="background: {$Whats_Background}; color: {$Whats_Fontcolor}">
 <i class="fab fa-whatsapp"></i>
 Whatsapp</a>

@@ -129,14 +129,13 @@ class MarkContactWhatsapp extends Module
         // Get default language
         $defaultLang = (int)Configuration::get('PS_LANG_DEFAULT');
         $fieldsForm=array();
-        $countries = Country::getCountries($defaultLang,false,false,false);
+        $countries = Country::getCountries($defaultLang, false, false, false);
         $options = array();
-        foreach ($countries as $id => $country)
-        {
-          $options[] = array(
-            "id" => $id.'-'.$country['call_prefix'],
-            "name" => $country['country'].' +'.$country['call_prefix']
-          );
+        foreach ($countries as $id => $country) {
+            $options[] = array(
+                "id" => $id.'-'.$country['call_prefix'],
+                "name" => $country['country'].' +'.$country['call_prefix']
+            );
         }
         // Init Fields form array
         $fieldsForm[0]['form'] = array(
@@ -153,7 +152,7 @@ class MarkContactWhatsapp extends Module
                     'required' => true,
                     'options' => array(
                         'query' => $options,
-                        'id' => 'id',     
+                        'id' => 'id',
                         'name' => 'name',
                   ),
                 ),
